@@ -8,6 +8,8 @@ namespace MyTodo.Storage.Configurations
     {
         public void Configure(EntityTypeBuilder<TodoListItem> builder)
         {
+            builder.ToTable("TodoListItem");
+
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Title)
                 .HasMaxLength(256)
@@ -20,7 +22,7 @@ namespace MyTodo.Storage.Configurations
                 .IsRequired();
 
             builder.HasOne(x => x.TodoList)
-                .WithMany().HasForeignKey(x =>  x.TodoListId);
+                .WithMany(x => x.Tasks).HasForeignKey(x =>  x.TodoListId);
 
             builder.HasMany(x => x.Steps)
                 .WithOne().HasForeignKey(x => x.Id);

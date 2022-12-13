@@ -8,6 +8,7 @@ namespace MyTodo.Storage.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("Users");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Username)
@@ -25,6 +26,9 @@ namespace MyTodo.Storage.Configurations
 
             builder.Property(x => x.CreatedOn)
                 .IsRequired();
+
+            builder.HasMany(x => x.TodoLists)
+                .WithOne(x => x.User).HasForeignKey(x => x.UserId);
         }
     }
 }

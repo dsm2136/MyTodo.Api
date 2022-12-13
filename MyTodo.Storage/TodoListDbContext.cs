@@ -24,7 +24,7 @@ namespace MyTodo.Storage
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=MyTodo;User Id=sa;Password=roOt1234;");
+            optionsBuilder.UseSqlServer("Server=localhost, 1433;Database=MyTodo;User Id=sa;Password=roOt1234;TrustServerCertificate=True;");
         }
     }
 }

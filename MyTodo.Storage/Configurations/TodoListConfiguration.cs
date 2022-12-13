@@ -8,22 +8,21 @@ namespace MyTodo.Storage.Configurations
     {
         public void Configure(EntityTypeBuilder<TodoList> builder)
         {
+            builder.ToTable("TodoList");
+
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Title)
                 .HasMaxLength(300)
                 .IsRequired();
             
-            builder.Property(x => x.AuthorId)
+            builder.Property(x => x.UserId)
                 .IsRequired();
 
             builder.Property(x => x.CreatedOn)
                 .IsRequired();
 
             builder.HasMany(x => x.Tasks)
-                .WithOne().HasForeignKey(x => x.TodoListId);
-
-            builder.HasOne(x => x.Author)
-                .WithMany().HasForeignKey(x => x.AuthorId);
+                .WithOne(x => x.TodoList).HasForeignKey(x => x.TodoListId);
         }
     }
 }
