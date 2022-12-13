@@ -11,18 +11,20 @@ namespace MyTodo.Storage
 {
     public class TodoListDbContext : DbContext
     {
-        public DbSet<TaskList> TaskLists { get; set; }
-        public DbSet<Models.Task> Tasks { get; set; }
+        public DbSet<TodoList> TaskLists { get; set; }
+        public DbSet<TodoListItem> Tasks { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new TaskConfiguration());
-            modelBuilder.ApplyConfiguration(new TaskListConfiguration());
+            modelBuilder.ApplyConfiguration(new TodoListItemConfiguration());
+            modelBuilder.ApplyConfiguration(new TodoListConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=MyTodo;User Id=sa;Password=roOt1234;");
+            optionsBuilder.UseSqlServer("Server=localhost, 1433;Database=MyTodo;User Id=sa;Password=roOt1234;TrustServerCertificate=True;");
         }
     }
 }

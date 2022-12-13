@@ -1,12 +1,15 @@
 ﻿namespace MyTodo.Storage.Models
 {
-    public class Task
+    public class TodoList
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
+        public int UserId { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
-        public bool IsDone { get; set; }
+
+
+        public ICollection<TodoListItem>? Tasks { get; set;}
+        public User? User { get; set; }
     }
 }
