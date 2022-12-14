@@ -7,8 +7,8 @@
         public string? Description { get; set; }
         public int? ParentId { get; set; }
         public int TodoListId { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime? UpdatedOn { get; set; }
+        public DateTimeOffset CreatedOn { get; set; }
+        public DateTimeOffset? UpdatedOn { get; set; }
         public bool IsDone { get; set; }
 
         public TodoList? TodoList { get; set; }
