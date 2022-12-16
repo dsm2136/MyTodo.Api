@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyTodo.Storage.Configurations;
 using MyTodo.Storage.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyTodo.Storage
 {
