@@ -91,8 +91,7 @@ namespace MyTodo.Storage.Repositories
             return await dbContext.SaveChangesAsync() > 0;
         }
 
-        //TODO
-        public async Task<bool> IsContrain(int id)
+        public async Task<bool> IsContainAsync(int id)
         {
             return await dbContext.TaskLists.AnyAsync(x => x.Id == id);
         }

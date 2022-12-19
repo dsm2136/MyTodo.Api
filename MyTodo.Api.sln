@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTodo.Api", "MyTodo.Api\My
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTodo.Storage", "MyTodo.Storage\MyTodo.Storage.csproj", "{4BDE9A84-B504-4DFB-9D0D-D4CD10EBB221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTodo.Domain", "MyTodo.Domain\MyTodo.Domain.csproj", "{021767AB-0100-49B3-8277-AFA430A2A3EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTodo.Domain", "MyTodo.Domain\MyTodo.Domain.csproj", "{021767AB-0100-49B3-8277-AFA430A2A3EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTodo.Domain.Infrastructure", "MyTodo.Domain.Infrastructure\MyTodo.Domain.Infrastructure.csproj", "{406C67CC-1182-4821-83DC-9F9F796B65A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{021767AB-0100-49B3-8277-AFA430A2A3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{021767AB-0100-49B3-8277-AFA430A2A3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{021767AB-0100-49B3-8277-AFA430A2A3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{406C67CC-1182-4821-83DC-9F9F796B65A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406C67CC-1182-4821-83DC-9F9F796B65A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406C67CC-1182-4821-83DC-9F9F796B65A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{406C67CC-1182-4821-83DC-9F9F796B65A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

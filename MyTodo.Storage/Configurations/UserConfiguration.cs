@@ -4,7 +4,7 @@ using MyTodo.Storage.Models;
 
 namespace MyTodo.Storage.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    internal class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
