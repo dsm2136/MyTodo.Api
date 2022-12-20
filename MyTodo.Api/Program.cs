@@ -16,9 +16,8 @@ builder.Services.AddScoped<ITodoListStorage, TodoListRepository>();
 builder.Services.AddScoped<ITodoListItemStorage, TodoListItemRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
-// TODO
-//builder.Services.AddScoped<ITodoListService, TodoListService>();
-//builder.Services.AddScoped<ITodoListItemService, TodoListItemService>();
+builder.Services.AddScoped<ITodoListService, TodoListService>();
+builder.Services.AddScoped<ITodoListItemService, TodoListItemService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
