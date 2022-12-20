@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyTodo.Domain.Exceptions;
 using MyTodo.Domain.InputModels;
 using MyTodo.Domain.Models;
 using MyTodo.Domain.Services;
-using MyTodo.Domain.Storages;
 using System.Net;
 
 namespace MyTodo.Api.Controllers
@@ -35,9 +35,18 @@ namespace MyTodo.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateAsync([FromBody] CreateUserInputModel inputModel)
         {
-            await userService.InsertAsync(inputModel);
+            try
+            {
+                await userService.InsertAsync(inputModel);
+            }
+            catch (UserCreationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
             return NoContent();
         }
 
@@ -46,7 +55,18 @@ namespace MyTodo.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<bool>> UpdateAsync(UpdateUserInputModel inputModel)
         {
-            if (!await userService.UpdateAsync(inputModel))
+            bool result;
+            
+            try
+            {
+                result = await userService.UpdateAsync(inputModel)
+            }
+            catch (UserCreationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+            if (!result)
             {
                 return NotFound();
             }
@@ -56,7 +76,7 @@ namespace MyTodo.Api.Controllers
 
         [HttpDelete("{id:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<bool>> DeleteByIdAsync([FromRoute] int id)
         {
             if (!await userService.DeleteByIdAsync(id))
@@ -64,7 +84,7 @@ namespace MyTodo.Api.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return NoContent();
         }
     }
 }

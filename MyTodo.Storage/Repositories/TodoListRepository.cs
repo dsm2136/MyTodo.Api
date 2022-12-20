@@ -55,11 +55,6 @@ namespace MyTodo.Storage.Repositories
 
         public async Task InsertAsync(CreateTodoListInputModel inputModel)
         {
-            if (inputModel == null) 
-            {
-                throw new ArgumentNullException(nameof(inputModel));
-            }
-
             var todoList = new TodoList
             {
                 Title = inputModel.Title,

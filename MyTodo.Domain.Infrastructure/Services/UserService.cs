@@ -3,11 +3,6 @@ using MyTodo.Domain.InputModels;
 using MyTodo.Domain.Models;
 using MyTodo.Domain.Services;
 using MyTodo.Domain.Storages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyTodo.Domain.Infrastructure.Services
 {
@@ -40,16 +35,25 @@ namespace MyTodo.Domain.Infrastructure.Services
             await userStorage.InsertAsync(inputModel); 
         }
 
-        public Task<bool> UpdateAsync(UpdateUserInputModel inputModel)
+        public async Task<bool> UpdateAsync(UpdateUserInputModel inputModel)
         {
+            if (inputModel == null)
+            {
+                throw new ArgumentNullException(nameof(inputModel));
+            }
 
+            if (!string.IsNullOrEmpty(inputModel.Username) && 
+                await userStorage.IsUsernameUniqueAsync(inputModel.Username))
+            {
+                throw new UserUpdatingException("Username already exists");
+            }
 
-            throw new NotImplementedException();
+            return await userStorage.UpdateAsync(inputModel);
         }
 
         public Task<bool> DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return userStorage.DeleteByIdAsync(id);
         }
     }
 }

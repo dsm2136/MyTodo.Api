@@ -7,6 +7,7 @@ namespace MyTodo.Domain.Storages
     {
         Task<TodoListItemModel?> GetByIdAsync(int id);
         Task<IEnumerable<TodoListItemModel>> SearchByTodoListIdAsync(int todoListId);
+        Task<bool> IsContainAsync(int id);
         Task InsertAsync(CreateListItemInputModel inputModel);
         Task<bool> UpdateAsync(UpdateListItemInputModel inputModel);
         Task<bool> DeleteByIdAsync(int id);
