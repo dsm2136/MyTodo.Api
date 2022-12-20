@@ -89,5 +89,10 @@ namespace MyTodo.Storage.Repositories
             dbContext.Users.Remove(user);
             return await dbContext.SaveChangesAsync() > 0;
         }
+
+        public async Task<bool> IsUsernameUniqueAsync(string username)
+        {
+            return await dbContext.Users.AnyAsync(x => x.Username == username);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MyTodo.Storage.Models
 {
-    public class TodoListItem
+    internal class TodoListItem
     {
         public int Id { get; set; }
         public string Title { get; set; }
