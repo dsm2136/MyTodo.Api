@@ -10,7 +10,10 @@ namespace MyTodo.Storage
         internal DbSet<TodoListItem> Tasks { get; set; }
         internal DbSet<User> Users { get; set; }
 
-        public TodoListDbContext(DbContextOptions<TodoListDbContext> options) : base(options) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer("Server=localhost, 1433;Database=MyTodo;User Id=sa;Password=roOt1234;TrustServerCertificate=True;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

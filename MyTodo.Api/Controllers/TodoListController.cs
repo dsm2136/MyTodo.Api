@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyTodo.Domain.Exceptions;
 using MyTodo.Domain.InputModels;
 using MyTodo.Domain.Models;
 using MyTodo.Domain.Services;
@@ -26,9 +27,18 @@ namespace MyTodo.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateAsync([FromBody] CreateTodoListInputModel inputModel)
         {
-            await todoListService.CreateAsync(inputModel);
+            try
+            {
+                await todoListService.CreateAsync(inputModel);
+            }
+            catch (TodoListCretionException ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+            
             return NoContent();
         }
 

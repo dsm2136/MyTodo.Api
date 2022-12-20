@@ -58,6 +58,11 @@ namespace MyTodo.Storage.Repositories
             });
         }
 
+        public async Task<bool> IsContainAsync(int id)
+        {
+            return await dbContext.Tasks.AnyAsync(x => x.Id == id);
+        }
+
         public async Task InsertAsync(CreateListItemInputModel inputModel)
         {
             if (inputModel == null) 
