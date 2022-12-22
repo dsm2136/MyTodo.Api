@@ -59,7 +59,7 @@ namespace MyTodo.Api.Controllers
             
             try
             {
-                result = await userService.UpdateAsync(inputModel)
+                result = await userService.UpdateAsync(inputModel);
             }
             catch (UserCreationException ex)
             {
