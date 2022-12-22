@@ -6,7 +6,7 @@ using MyTodo.Storage.Models;
 
 namespace MyTodo.Storage.Repositories
 {
-    public class TodoListItemRepository : ITodoListItemStorage
+    public class TodoListItemRepository : ITodoItemStorage
     {
         private readonly TodoListDbContext dbContext;
         public TodoListItemRepository(TodoListDbContext dbContext) 
@@ -70,7 +70,7 @@ namespace MyTodo.Storage.Repositories
                 throw new ArgumentNullException(nameof(inputModel));
             }
 
-            var newTask = new TodoListItem
+            var newTask = new TodoItem
             {
                 Title = inputModel.Title,
                 Description = inputModel.Description,

@@ -3,7 +3,7 @@ using MyTodo.Domain.Models;
 
 namespace MyTodo.Domain.Services
 {
-    public interface ITodoListItemService
+    public interface ITodoItemService
     {
         Task<TodoListItemModel?> GetByIdAsync(int id);
         Task<IEnumerable<TodoListItemModel>> SearchByTodoListIdAsync(int todoListId);

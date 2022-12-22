@@ -4,9 +4,9 @@ using MyTodo.Storage.Models;
 
 namespace MyTodo.Storage.Configurations
 {
-    internal class TodoListItemConfiguration : IEntityTypeConfiguration<TodoListItem>
+    internal class TodoListItemConfiguration : IEntityTypeConfiguration<TodoItem>
     {
-        public void Configure(EntityTypeBuilder<TodoListItem> builder)
+        public void Configure(EntityTypeBuilder<TodoItem> builder)
         {
             builder.ToTable("TodoListItem");
 

@@ -10,9 +10,9 @@ namespace MyTodo.Api.Controllers
     [ApiController]
     public class TodoListItemController : ControllerBase
     {
-        private readonly ITodoListItemService todoListItemService;
+        private readonly ITodoItemService todoListItemService;
 
-        public TodoListItemController(ITodoListItemService todoListItemService)
+        public TodoListItemController(ITodoItemService todoListItemService)
         {
             this.todoListItemService = todoListItemService;
         }

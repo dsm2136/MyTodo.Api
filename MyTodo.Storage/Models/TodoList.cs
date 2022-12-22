@@ -9,7 +9,7 @@
         public DateTimeOffset? UpdatedOn { get; set; }
 
 
-        public ICollection<TodoListItem>? Tasks { get; set;}
+        public ICollection<TodoItem>? Tasks { get; set;}
         public User? User { get; set; }
     }
 }

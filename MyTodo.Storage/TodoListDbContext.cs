@@ -7,7 +7,7 @@ namespace MyTodo.Storage
     public class TodoListDbContext : DbContext
     {
         internal DbSet<TodoList> TaskLists { get; set; }
-        internal DbSet<TodoListItem> Tasks { get; set; }
+        internal DbSet<TodoItem> Tasks { get; set; }
         internal DbSet<User> Users { get; set; }
 
         public TodoListDbContext(DbContextOptions<TodoListDbContext> options) : base(options) { }

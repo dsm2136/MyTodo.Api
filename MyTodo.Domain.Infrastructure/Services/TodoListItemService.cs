@@ -6,12 +6,12 @@ using MyTodo.Domain.Storages;
 
 namespace MyTodo.Domain.Infrastructure.Services
 {
-    public class TodoListItemService : ITodoListItemService
+    public class TodoListItemService : ITodoItemService
     {
-        private readonly ITodoListItemStorage todoItemStorage;
+        private readonly ITodoItemStorage todoItemStorage;
         private readonly ITodoListStorage listStorage;
 
-        public TodoListItemService(ITodoListItemStorage todoItemStorage, ITodoListStorage listStorage)
+        public TodoListItemService(ITodoItemStorage todoItemStorage, ITodoListStorage listStorage)
         {
             this.todoItemStorage = todoItemStorage;
             this.listStorage = listStorage;
