@@ -20,7 +20,7 @@ namespace MyTodo.Api.Controllers
 
         [HttpGet("search/{userId:int}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<TodoListItemModel>>> SearchByUserIdAsync(int userId)
+        public async Task<ActionResult<IEnumerable<TodoListModel>>> SearchByUserIdAsync(int userId)
         {
             return Ok(await todoListService.SearchByAuthorIdAsync(userId));
         }

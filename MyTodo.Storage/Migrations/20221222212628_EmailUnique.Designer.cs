@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyTodo.Storage;
 
@@ -11,9 +12,11 @@ using MyTodo.Storage;
 namespace MyTodo.Storage.Migrations
 {
     [DbContext(typeof(TodoListDbContext))]
-    partial class TodoListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221222212628_EmailUnique")]
+    partial class EmailUnique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,9 +129,6 @@ namespace MyTodo.Storage.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Users", (string)null);

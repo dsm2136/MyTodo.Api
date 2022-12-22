@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyTodo.Domain.Infrastructure\MyTodo.Domain.Infrastructure.csproj" />
     <ProjectReference Include="..\MyTodo.Storage\MyTodo.Storage.csproj" />
   </ItemGroup>
 

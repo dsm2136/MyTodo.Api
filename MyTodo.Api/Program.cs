@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using MyTodo.Domain.Infrastructure.Services;
+using MyTodo.Domain.Services;
 using MyTodo.Domain.Storages;
 using MyTodo.Storage;
 using MyTodo.Storage.Repositories;
@@ -13,6 +15,10 @@ builder.Services.AddDbContext<TodoListDbContext>(builder =>
 builder.Services.AddScoped<IUserStorage, UserRepository>();
 builder.Services.AddScoped<ITodoListStorage, TodoListRepository>();
 builder.Services.AddScoped<ITodoItemStorage, TodoListItemRepository>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITodoListService, TodoListService>();
+builder.Services.AddScoped<ITodoItemService, TodoListItemService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

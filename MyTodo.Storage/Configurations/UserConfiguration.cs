@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyTodo.Storage.Models;
+using System.Reflection.Emit;
 
 namespace MyTodo.Storage.Configurations
 {
@@ -23,9 +24,12 @@ namespace MyTodo.Storage.Configurations
             builder.Property(x => x.Email)
                 .HasMaxLength(254)
                 .IsRequired();
-
+           
             builder.Property(x => x.CreatedOn)
                 .IsRequired();
+
+            builder.HasIndex(x => x.Email).IsUnique();
+            builder.HasIndex(x => x.Username).IsUnique();
 
             builder.HasMany(x => x.TodoLists)
                 .WithOne(x => x.User).HasForeignKey(x => x.UserId);
