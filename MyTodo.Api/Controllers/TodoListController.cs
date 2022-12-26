@@ -20,9 +20,16 @@ namespace MyTodo.Api.Controllers
 
         [HttpGet("search/{userId:int}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<IEnumerable<TodoListModel>>> SearchByUserIdAsync(int userId)
         {
-            return Ok(await todoListService.SearchByAuthorIdAsync(userId));
+            var todoLists = await todoListService.SearchByAuthorIdAsync(userId);
+
+            if (todoLists == null) 
+            {
+                return NotFound();
+            }
+            return Ok(todoLists);
         }
 
         [HttpPost]
