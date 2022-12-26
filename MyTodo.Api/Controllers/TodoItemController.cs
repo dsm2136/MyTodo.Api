@@ -8,21 +8,21 @@ namespace MyTodo.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoListItemController : ControllerBase
+    public class TodoItemController : ControllerBase
     {
-        private readonly ITodoItemService todoListItemService;
+        private readonly ITodoItemService todoItemService;
 
-        public TodoListItemController(ITodoItemService todoListItemService)
+        public TodoItemController(ITodoItemService todoListItemService)
         {
-            this.todoListItemService = todoListItemService;
+            this.todoItemService = todoListItemService;
         }
 
         [HttpGet("{id:int}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<TodoListItemModel>> GetByIdAsync([FromRoute] int id)
+        public async Task<ActionResult<TodoItemModel>> GetByIdAsync([FromRoute] int id)
         {
-            var task = await todoListItemService.GetByIdAsync(id);
+            var task = await todoItemService.GetByIdAsync(id);
 
             if (task == null)
             {
@@ -34,16 +34,24 @@ namespace MyTodo.Api.Controllers
 
         [HttpGet("search/{userId:int}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<TodoListItemModel>>> SearchByListIdAsync(int listId)
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<IEnumerable<TodoItemModel>>> SearchByListIdAsync(int listId)
         {
-            return Ok(await todoListItemService.SearchByTodoListIdAsync(listId));
+            var tasks = await todoItemService.SearchByTodoListIdAsync(listId);
+
+            if (tasks == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(tasks);
         }
 
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        public async Task<IActionResult> CreateAsync([FromBody] CreateListItemInputModel inputModel)
+        public async Task<IActionResult> CreateAsync([FromBody] CreateTodoItemInputModel inputModel)
         {
-            await todoListItemService.CreateAsync(inputModel);
+            await todoItemService.CreateAsync(inputModel);
             return NoContent();
         }
 
@@ -52,7 +60,7 @@ namespace MyTodo.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<bool>> UpdateAsync(UpdateListItemInputModel inputModel)
         {
-            if (!await todoListItemService.UpdateAsync(inputModel))
+            if (!await todoItemService.UpdateAsync(inputModel))
             {
                 return NotFound();
             }
@@ -65,7 +73,7 @@ namespace MyTodo.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<bool>> DeleteByIdAsync([FromRoute] int id)
         {
-            if (!await todoListItemService.DeleteByIdAsync(id))
+            if (!await todoItemService.DeleteByIdAsync(id))
             {
                 return NotFound();
             }
