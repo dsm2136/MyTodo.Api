@@ -69,9 +69,9 @@ namespace MyTodo.Storage.Repositories
                 return false;
             }
 
-            user.FirstName = inputModel.FirstName ?? user.FirstName;
-            user.LastName = inputModel.LastName ?? user.LastName;
-            user.Username = inputModel.Username ?? user.Username;
+            user.FirstName = string.IsNullOrEmpty(inputModel.FirstName) ? user.FirstName : inputModel.FirstName;
+            user.LastName = string.IsNullOrEmpty(inputModel.LastName) ? user.LastName : inputModel.LastName;
+            user.Username = string.IsNullOrEmpty(inputModel.Username) ? user.Username : inputModel.Username;
             user.UpdatedOn = DateTimeOffset.UtcNow;
 
             return await dbContext.SaveChangesAsync() > 0;
