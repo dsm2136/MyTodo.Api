@@ -5,10 +5,10 @@ namespace MyTodo.Domain.Storages
 {
     public interface ITodoItemStorage
     {
-        Task<TodoListItemModel?> GetByIdAsync(int id);
-        Task<IEnumerable<TodoListItemModel>> SearchByTodoListIdAsync(int todoListId);
+        Task<TodoItemModel?> GetByIdAsync(int id);
+        Task<IEnumerable<TodoItemModel>> SearchByTodoListIdAsync(int todoListId);
         Task<bool> IsContainAsync(int id);
-        Task InsertAsync(CreateListItemInputModel inputModel);
+        Task InsertAsync(CreateTodoItemInputModel inputModel);
         Task<bool> UpdateAsync(UpdateListItemInputModel inputModel);
         Task<bool> DeleteByIdAsync(int id);
     }

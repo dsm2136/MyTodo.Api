@@ -14,7 +14,7 @@ builder.Services.AddDbContext<TodoListDbContext>(builder =>
 
 builder.Services.AddScoped<IUserStorage, UserRepository>();
 builder.Services.AddScoped<ITodoListStorage, TodoListRepository>();
-builder.Services.AddScoped<ITodoItemStorage, TodoListItemRepository>();
+builder.Services.AddScoped<ITodoItemStorage, TodoItemRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITodoListService, TodoListService>();

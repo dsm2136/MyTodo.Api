@@ -17,31 +17,31 @@ namespace MyTodo.Domain.Infrastructure.Services
             this.listStorage = listStorage;
         }
 
-        public Task<TodoListItemModel?> GetByIdAsync(int id)
+        public Task<TodoItemModel?> GetByIdAsync(int id)
         {
             return todoItemStorage.GetByIdAsync(id);
         }
 
-        public Task<IEnumerable<TodoListItemModel>> SearchByTodoListIdAsync(int todoListId)
+        public Task<IEnumerable<TodoItemModel>> SearchByTodoListIdAsync(int todoListId)
         {
             return todoItemStorage.SearchByTodoListIdAsync(todoListId);
         }
 
-        public async Task CreateAsync(CreateListItemInputModel inputModel)
+        public async Task CreateAsync(CreateTodoItemInputModel inputModel)
         {
             if (inputModel == null)
             {
                 throw new ArgumentNullException(nameof(inputModel));
             }
 
-            if (await listStorage.IsContainAsync(inputModel.TodoListId))
+            if (!await listStorage.ExistsAsync(inputModel.TodoListId))
             {
                 throw new TodoItemCreationException("Todo list does not exist");
             }
 
             if (inputModel.ParentId.HasValue)
             {
-                if (!await listStorage.IsContainAsync(inputModel.ParentId.Value))
+                if (!await listStorage.ExistsAsync(inputModel.ParentId.Value))
                 {
                     throw new TodoItemCreationException("Parent task does not exist");
                 }

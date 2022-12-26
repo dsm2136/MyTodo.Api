@@ -6,15 +6,15 @@ using MyTodo.Storage.Models;
 
 namespace MyTodo.Storage.Repositories
 {
-    public class TodoListItemRepository : ITodoItemStorage
+    public class TodoItemRepository : ITodoItemStorage
     {
         private readonly TodoListDbContext dbContext;
-        public TodoListItemRepository(TodoListDbContext dbContext) 
+        public TodoItemRepository(TodoListDbContext dbContext) 
         {
             this.dbContext = dbContext;
         }
 
-        public async Task<TodoListItemModel?> GetByIdAsync(int id)
+        public async Task<TodoItemModel?> GetByIdAsync(int id)
         {
             var task = await dbContext.Tasks.FirstOrDefaultAsync(x=> x.Id == id);
 
@@ -23,7 +23,7 @@ namespace MyTodo.Storage.Repositories
                 return null;
             }
 
-            return new TodoListItemModel 
+            return new TodoItemModel 
             { 
                 Id = task.Id,
                 Title = task.Title,
@@ -36,16 +36,16 @@ namespace MyTodo.Storage.Repositories
             };
         }
 
-        public async Task<IEnumerable<TodoListItemModel>> SearchByTodoListIdAsync(int toDoListId)
+        public async Task<IEnumerable<TodoItemModel>> SearchByTodoListIdAsync(int toDoListId)
         {
-            var tasks = await dbContext.Tasks.Where(x => x.TodoListId == toDoListId).ToListAsync();
+            var tasks = await dbContext.Tasks.Where(x => x.TodoListId == toDoListId && x.ParentId == null).ToListAsync();
 
             if (tasks.Count == 0)
             {
-                return Enumerable.Empty<TodoListItemModel>();
+                return Enumerable.Empty<TodoItemModel>();
             }
 
-            return tasks.Select(x => new TodoListItemModel
+            return tasks.Select(x => new TodoItemModel
             {
                 Id = x.Id,
                 Title = x.Title,
@@ -63,7 +63,7 @@ namespace MyTodo.Storage.Repositories
             return await dbContext.Tasks.AnyAsync(x => x.Id == id);
         }
 
-        public async Task InsertAsync(CreateListItemInputModel inputModel)
+        public async Task InsertAsync(CreateTodoItemInputModel inputModel)
         {
             if (inputModel == null) 
             {

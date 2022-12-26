@@ -1,6 +1,6 @@
 ﻿namespace MyTodo.Domain.Models
 {
-    public class TodoListItemModel
+    public class TodoItemModel
     {
         public int Id { get; init; }
         public string Title { get; init; }
@@ -12,6 +12,6 @@
         public bool IsDone { get; init; }
 
         public string TodoListName { get; init; }
-        public IEnumerable<TodoListItemModel>? Steps { get; init; }
+        public IEnumerable<TodoItemModel>? Steps { get; init; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MyTodo.Domain.InputModels
 {
-    public interface CreateListItemInputModel
+    public class CreateTodoItemInputModel
     {
         public string Title { get; set; }
         public string? Description { get; set; }

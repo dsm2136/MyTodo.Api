@@ -9,7 +9,7 @@
         public DateTimeOffset? UpdatedOn { get; init; }
 
 
-        public IEnumerable<TodoListItemModel>? Tasks { get; init; }
+        public IEnumerable<TodoItemModel>? Tasks { get; init; }
         public UserModel? User { get; init; }
     }
 }
