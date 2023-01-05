@@ -24,7 +24,7 @@ namespace MyTodo.Domain.Infrastructure.Services
         {
             if (inputModel == null)
             {
-                throw new ArgumentException(nameof(inputModel));
+                throw new ArgumentNullException(nameof(inputModel));
             }
 
             if (await userStorage.IsUsernameUniqueAsync(inputModel.Username))
